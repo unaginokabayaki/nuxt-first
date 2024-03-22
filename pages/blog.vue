@@ -1,16 +1,23 @@
 <template>
-    <h1>ブログページ</h1>
-    <p>こんにちは</p>
+   <div>
+    <h1>Blog</h1>
+    <div v-for="item in data" :key="item.id">
+        <div>
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.excerpt }}</p>
+            <p>{{ item.date }}</p>
+            <NuxtLink :to="item._path">ReadMore</NuxtLink>
+        </div>
+        <div>
+            <nuxt-img :src="item.image" alt="profile" width="500px"/>
+        </div>
+        <hr>
+    </div>
+   </div>
 </template>
 
-<script setup></script>
-
-<style>
-h1 {
-    color: red;
-}
-.text {
-    color: green;
-    letter-spacing: 20px;
-}
-</style>
+<script setup>
+const { data } = await useAsyncData("blogQuery", () => 
+    queryContent("/blog").sort({id: -1}).find()
+)
+</script>
