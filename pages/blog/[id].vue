@@ -1,14 +1,15 @@
 <template>
     <h1>記事ページです</h1>
-    <div>
+    <div class="hero">
         <nuxt-img :src="item.image" alt="profile" width="500px"/>
     </div>
-    <div>
-        {{ item.title }}
-        {{ item.date }}
+    <div class="wrapper">
+       <div class="container">
+        <h1>{{ item.title }}</h1>
+        <p>{{ item.date }}</p>
         <ContentDoc />
+       </div>
     </div>
-
 </template>
 
 <script setup>
